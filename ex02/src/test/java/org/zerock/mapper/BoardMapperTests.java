@@ -38,7 +38,7 @@ public class BoardMapperTests {
 		
 	}
 	
-	@Test
+	// @Test
 	public void textInsertSelectKey() {
 		
 		BoardVO board = new BoardVO();
@@ -52,5 +52,37 @@ public class BoardMapperTests {
 		
 		
 	}
+	
+	// @Test
+	public void testRead() {
+		
+		BoardVO board = mapper.read(19L);
+		
+		log.info(board);
+	}
+	
+	//@Test
+	public void testDelete() {
+		
+		log.info("Delete count : " + mapper.delete(3L));
+		
+	}
+
+	@Test
+	public void textUpdate() {
+		
+		BoardVO board = new BoardVO();
+		board.setBno(6L);
+		board.setTitle("수정된 제목");
+		board.setContent("수정된 내용");
+		board.setWriter("newbie Updated");
+		
+		int count = mapper.update(board);
+		
+		log.info("Update Count : " + count);
+		
+		
+	}
+	
 	
 }
