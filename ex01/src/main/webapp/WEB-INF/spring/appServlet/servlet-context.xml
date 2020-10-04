@@ -25,12 +25,17 @@
 	
 	<!--  File upload configuration -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 기본 인코딩방식 설정 : UTF-8 -->
 		<beans:property name="defaultEncoding" value="utf-8"></beans:property>
-		<!-- 1024 * 1024 * 10 bytes 10MB -->
+		<!-- 한 번의 Request로 전달될수 있는 최대 크기
+		1024 * 1024 * 10 bytes 10MB -->
 		<beans:property name="maxUploadSize" value="104857560"></beans:property>
-		<!--  1024 * 1024 * 2bytes  2MB -->
+		<!-- 하나의 파일의 최대 크기
+		 1024 * 1024 * 2bytes  2MB -->
 		<beans:property name="maxUploadSizePerFile" value ="2097152"></beans:property>
+		<!-- 최대 크기를 초과했을때 임시 파일 형태로 보관할 경로(절대경로) -->
 		<beans:property name="uploadTempDir" value="file:/C:/upload/tmp"></beans:property>
+		<!-- 메모리에서 유지하는 최대 크기 -->
 		<beans:property name="maxInMemorySize" value="10485756"></beans:property>
 	</beans:bean>
 	
