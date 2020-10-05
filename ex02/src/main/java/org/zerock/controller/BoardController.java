@@ -18,7 +18,9 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/board/*")
 @AllArgsConstructor
 public class BoardController {
-
+	
+	// @AllArgsConstructor어노테이션의 사용으로
+	// Spring Container에서 생성된 Bean객체를 Controller를 생성할 때 주입받는다.
 	private BoardService service;
 	
 	@GetMapping("/list")

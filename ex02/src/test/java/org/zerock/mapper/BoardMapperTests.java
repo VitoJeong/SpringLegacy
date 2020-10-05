@@ -10,6 +10,8 @@ import org.zerock.domain.BoardVO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
+
+// 테스트 순서 mapper -> service -> controller
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
