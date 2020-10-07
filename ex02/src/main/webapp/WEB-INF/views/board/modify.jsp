@@ -22,7 +22,10 @@
       <div class="panel-body">
       	
       	<form role="form" action="/board/modify" method="post">
-
+      	
+			<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum }"/>'>
+	        <input type='hidden' name='amount' value='<c:out value="${cri.amount }"/>'>
+		
           <div class="form-group">
           <label>Bno</label> <input class="form-control" name='bno'
             value='<c:out value="${board.bno }"/>' readonly="readonly">
@@ -59,16 +62,15 @@
 </form> --%>
 
 
-<%-- <form id='operForm' action="/board/modify" method="get">
-  <input type='hidden' id='bno' name='bno' value='<c:out value="${board.bno}"/>'>
-  <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
-  <input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
-  <input type='hidden' name='keyword' value='<c:out value="${cri.keyword}"/>'>
-  <input type='hidden' name='type' value='<c:out value="${cri.type}"/>'>  
- 
-</form>
+	<form id='operForm' action="/board/modify" method="get">
+	  <input type='hidden' id='bno' name='bno' value='<c:out value="${board.bno}"/>'>
+	  <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
+	  <input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
+	  <input type='hidden' name='keyword' value='<c:out value="${cri.keyword}"/>'>
+	  <input type='hidden' name='type' value='<c:out value="${cri.type}"/>'>  
+	 
+	</form>
 
- --%>
 
       </div>
       <!--  end panel-body -->
@@ -99,9 +101,20 @@ $(document).ready(function() {
 	      formObj.attr("action", "/board/remove");
 	      
 	    }else if(operation === 'list'){
-	      	//move to list GET방식
+	   	   	//move to list GET방식
 			formObj.attr("action","/board/list").attr("method","get");
+	  		var pageNumTag = $("input[name='pageNum']").clone();
+	   		var amountTag = $("input[name='amount']").clone();
+	   		var keywordTag = $("input[name='keyword']").clone();
+	      	var typeTag = $("input[name='type']").clone();      
+		   		
+			
 			formObj.empty();
+	    	formObj.append(pageNumTag);
+	    	formObj.append(amountTag);
+	    	formObj.append(keywordTag);
+	    	formObj.append(typeTag);
+				
 	    }
 	    
 	    formObj.submit();
