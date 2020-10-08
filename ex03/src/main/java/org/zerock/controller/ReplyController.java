@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.zerock.domain.Criteria;
+import org.zerock.domain.ReplyPageDTO;
 import org.zerock.domain.ReplyVO;
 import org.zerock.service.ReplyService;
 
@@ -27,6 +28,7 @@ import lombok.extern.log4j.Log4j;
 public class ReplyController {
 	private ReplyService service;
 	
+	// POST - 등록/ GET - 조회,페이지/ DELETE - 삭제/ PUT or PATCH - 수정
 	
 	// consumes - json타입 데이터 전달, produces - 댓글처리 결과를 문자열로 알려줌
 	// @RequestBody - json데이터를 ReplyVO타입으로 변환
@@ -86,35 +88,35 @@ public class ReplyController {
 	}
 	
 	// @PathVariable - 댓글번호를 파라미터로 처리
-	 @GetMapping(value = "/pages/{bno}/{page}", 
-			 produces = {
-					 MediaType.APPLICATION_XML_VALUE,
-					 MediaType.APPLICATION_JSON_UTF8_VALUE })
-	 public ResponseEntity<List<ReplyVO>> getList(
-			 @PathVariable("page") int page,
-			 @PathVariable("bno") Long bno) {
-	
-		 
-		 log.info("getList.................");
-		 Criteria cri = new Criteria(page,10);
-		 log.info(cri);
-	
-	 return new ResponseEntity<>(service.getList(cri, bno), HttpStatus.OK);
-	 }
+//	 @GetMapping(value = "/pages/{bno}/{page}", 
+//			 produces = {
+//					 MediaType.APPLICATION_XML_VALUE,
+//					 MediaType.APPLICATION_JSON_UTF8_VALUE })
+//	 public ResponseEntity<List<ReplyVO>> getList(
+//			 @PathVariable("page") int page,
+//			 @PathVariable("bno") Long bno) {
+//	
+//		 
+//		 log.info("getList.................");
+//		 Criteria cri = new Criteria(page,10);
+//		 log.info(cri);
+//	
+//	 return new ResponseEntity<>(service.getList(cri, bno), HttpStatus.OK);
+//	 }
 
-//	@GetMapping(value = "/pages/{bno}/{page}", 
-//			produces = { MediaType.APPLICATION_XML_VALUE,
-//			MediaType.APPLICATION_JSON_UTF8_VALUE })
-//	public ResponseEntity<ReplyPageDTO> getList(@PathVariable("page") int page, @PathVariable("bno") Long bno) {
-//
-//		Criteria cri = new Criteria(page, 10);
-//		
-//		log.info("get Reply List bno: " + bno);
-//
-//		log.info("cri:" + cri);
-//
-//		return new ResponseEntity<>(service.getListPage(cri, bno), HttpStatus.OK);
-//	}
+	@GetMapping(value = "/pages/{bno}/{page}", 
+			produces = { MediaType.APPLICATION_XML_VALUE,
+			MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public ResponseEntity<ReplyPageDTO> getList(@PathVariable("page") int page, @PathVariable("bno") Long bno) {
+
+		Criteria cri = new Criteria(page, 10);
+		
+		log.info("get Reply List bno: " + bno);
+
+		log.info("cri:" + cri);
+
+		return new ResponseEntity<>(service.getListPage(cri, bno), HttpStatus.OK);
+	}
 
 }
 
