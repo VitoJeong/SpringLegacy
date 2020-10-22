@@ -91,7 +91,8 @@ public class SampleController {
 
 		return new String[] { "category: " + cat, "productid: " + pid };
 	}
-
+	
+	// @RequestBody -> JSON데이터를 원하는 타입의 객체로 변환하는 경우 사용
 	@PostMapping("/ticket")
 	public Ticket convert(@RequestBody Ticket ticket) {
 

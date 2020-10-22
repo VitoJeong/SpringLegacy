@@ -11,7 +11,8 @@ import lombok.ToString;
 @Setter
 @Getter
 public class Criteria {
-	// 요청 페이지번호
+  
+  // 요청 페이지번호
   private int pageNum;
   // 한 페이지당 보여줄 데이터의 개수
   private int amount;

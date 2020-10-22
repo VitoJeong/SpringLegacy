@@ -23,6 +23,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class DataSourceTests {
 	
+	// HikariConfig클래스의 db접속 property를 활용한 DataSource객체 생성
 	@Setter(onMethod_ = { @Autowired})
 	private DataSource dataSource;
 	

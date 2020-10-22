@@ -53,6 +53,7 @@ public class SampleControllerTests {
     ticket.setOwner("Admin");
     ticket.setGrade("AAA");
     
+    // ticket타입을 json형태의 String타입으로 변환
     String jsonStr = new Gson().toJson(ticket);
     
     log.info(jsonStr);

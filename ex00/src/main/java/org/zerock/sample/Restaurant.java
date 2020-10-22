@@ -13,7 +13,7 @@ public class Restaurant {
 	@Setter(onMethod_ = { @Autowired })
 	private Chef chef;
 	
-	/*
+	/* Setter 주입
 	 * @Setter
 	 *  -> setter 메서드를 생성 (onMethod : 메서드에 추가할 어노테이션을 지정)
 	 * 

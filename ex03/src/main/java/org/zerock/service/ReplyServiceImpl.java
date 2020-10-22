@@ -17,6 +17,7 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class ReplyServiceImpl implements ReplyService{
 	
+	// Spring4.3부터는 인스턴스 객체가 하나라면 자동주입 지원
 	private ReplyMapper mapper;
 
 	@Override
