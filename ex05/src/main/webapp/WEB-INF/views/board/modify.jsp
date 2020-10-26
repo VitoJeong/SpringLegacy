@@ -192,7 +192,7 @@ $(document).ready(function() {
 	    formObj.append(keywordTag);
 	    formObj.append(typeTag);	  
 	    
-	  }else if(operation === 'modify'){
+	 }else if(operation === 'modify'){
 	      
 	      console.log("submit clicked");
 	      

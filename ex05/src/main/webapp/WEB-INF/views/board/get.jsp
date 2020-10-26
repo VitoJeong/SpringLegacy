@@ -495,21 +495,24 @@ $(document).ready(function() {
 	       
 	         //image type
 	         if(attach.fileType){
-	           var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/s_"+attach.uuid +"_"+attach.fileName);
+	           var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/s_" 
+	    	           + attach.uuid +"_"+attach.fileName);
 	           
-	           str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
+	           str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid 
+	           		+ "' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
 	           str += "<img src='/display?fileName="+fileCallPath+"'>";
 	           str += "</div>";
 	           str +"</li>";
 	         }else{
 	             
-	           str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
+	           str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid 
+	           		+ "' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
 	           str += "<span> "+ attach.fileName+"</span><br/>";
 	           str += "<img src='/resources/img/attach.png'></a>";
 	           str += "</div>";
 	           str +"</li>";
 	         }
-	       });
+	       }); // end $(arr).each()
 	       
 	       $(".uploadResult ul").html(str);
 	       
@@ -524,13 +527,14 @@ $(document).ready(function() {
 	    
 	    var liObj = $(this);
 	    
-	    var path = encodeURIComponent(liObj.data("path")+"/" + liObj.data("uuid")+"_" + liObj.data("filename"));
+	    var path = encodeURIComponent(liObj.data("path") 
+	    	    + "/" + liObj.data("uuid")+"_" + liObj.data("filename"));
 	    
 	    if(liObj.data("type")){
 	      showImage(path.replace(new RegExp(/\\/g),"/"));
 	    }else {
 	      //download 
-	      self.location ="/download?fileName="+path
+	      self.location ="/download?fileName="+path;
 	    }
 	    
 	    

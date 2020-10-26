@@ -33,6 +33,7 @@ import lombok.extern.log4j.Log4j;
 import net.coobird.thumbnailator.Thumbnailator;
 
 @Controller
+// @RequestMapping 없으므로 /* 로 실행
 @Log4j
 public class UploadController {
 	
@@ -286,42 +287,43 @@ public class UploadController {
 //		 return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
 //	 }
 	
-	 @GetMapping(value = "/download", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-		@ResponseBody
-		public ResponseEntity<Resource> downloadFile(@RequestHeader("User-Agent") String userAgent, String fileName) {
+	@GetMapping(value = "/download", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+	@ResponseBody
+	public ResponseEntity<Resource> downloadFile(
+			@RequestHeader("User-Agent") String userAgent, String fileName) {
 
-			Resource resource = new FileSystemResource("c:\\upload\\" + fileName);
+		Resource resource = new FileSystemResource("c:\\upload\\" + fileName);
 
-			if (resource.exists() == false) {
-				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			}
-
-			String resourceName = resource.getFilename();
-
-			// remove UUID
-			String resourceOriginalName = resourceName.substring(resourceName.indexOf("_") + 1);
-
-			HttpHeaders headers = new HttpHeaders();
-			try {
-
-				boolean checkIE = (userAgent.indexOf("MSIE") > -1 || userAgent.indexOf("Trident") > -1);
-
-				String downloadName = null;
-
-				if (checkIE) {
-					downloadName = URLEncoder.encode(resourceOriginalName, "UTF8").replaceAll("\\+", " ");
-				} else {
-					downloadName = new String(resourceOriginalName.getBytes("UTF-8"), "ISO-8859-1");
-				}
-
-				headers.add("Content-Disposition", "attachment; filename=" + downloadName);
-
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-			}
-
-			return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
+		if (resource.exists() == false) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+
+		String resourceName = resource.getFilename();
+
+		// remove UUID
+		String resourceOriginalName = resourceName.substring(resourceName.indexOf("_") + 1);
+
+		HttpHeaders headers = new HttpHeaders();
+		try {
+
+			boolean checkIE = (userAgent.indexOf("MSIE") > -1 || userAgent.indexOf("Trident") > -1);
+
+			String downloadName = null;
+
+			if (checkIE) {
+				downloadName = URLEncoder.encode(resourceOriginalName, "UTF8").replaceAll("\\+", " ");
+			} else {
+				downloadName = new String(resourceOriginalName.getBytes("UTF-8"), "ISO-8859-1");
+			}
+
+			headers.add("Content-Disposition", "attachment; filename=" + downloadName);
+
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+
+		return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
+	}
 		
 
 		@PostMapping("/deleteFile")

@@ -39,7 +39,7 @@ public class FileCheckTask {
 	}
 	
 	// 매일 새벽 3시마다 동작
-	@Scheduled(cron = "0 40 * * * *")
+	@Scheduled(cron = "0 0 3 * * *")
 	public void checkFiles() throws Exception {
 
 		log.warn("File Check Task run.................");
